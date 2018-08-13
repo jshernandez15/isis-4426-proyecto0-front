@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../service/auth.service';
 
@@ -13,7 +14,7 @@ export class NavbarComponent implements OnInit {
   isCollapsed: Boolean = true;
   authSubscription: Subscription;
 
-  constructor(private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
     this.handleAuth();
@@ -27,5 +28,6 @@ export class NavbarComponent implements OnInit {
 
   logOut(): void {
     this.authService.logout();
+    this.router.navigateByUrl("/");
   }
 }

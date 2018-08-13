@@ -21,6 +21,10 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+    path: 'logout',
+    component: HomeComponent
+  },
+  {
     path: 'registration',
     component: LoginComponent
   },

@@ -64,9 +64,24 @@ export class AuthService {
     }
 
     logout() {
-        localStorage.removeItem('token');
-        localStorage.removeItem('name');
-        this.token = null;
-        this.loggedIn.next(false);
+        this.requestLogout().subscribe(
+            data => {
+                if( !data.auth ){
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('name');
+                    this.token = null;
+                    this.loggedIn.next(false);
+                }
+            }
+            
+        );
+
+    }
+
+    private requestLogout(): Observable<any> {
+        return this.http.get<any>( environment.api + '/logout/')
+            .pipe(
+                catchError(this.handleError('Failure authenticating user', {}))
+              );
     }
 }
