@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { EventComponent } from './event/event.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuardService } from './guard/auth.guard';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
@@ -26,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'registration',
-    component: LoginComponent
+    component: RegisterComponent
   },
   { 
     path: '**',

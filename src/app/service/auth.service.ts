@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
@@ -7,6 +8,7 @@ import { catchError } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 import { User } from '../model/user.model';
+import { toUnicode } from 'punycode';
 
 @Injectable({
     providedIn: 'root'
@@ -83,5 +85,20 @@ export class AuthService {
             .pipe(
                 catchError(this.handleError('Failure authenticating user', {}))
               );
+    }
+
+    register(user: User, callback) {
+        this.requestUserCreation(user).subscribe(
+            (response) => {
+                callback(true);
+            },
+            (err) => {
+                callback(false);
+            }
+        );
+    }
+
+    private requestUserCreation(user: User): Observable<any> {
+        return this.http.post( environment.api + '/user/', user);
     }
 }
