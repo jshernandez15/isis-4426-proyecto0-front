@@ -1,0 +1,19 @@
+<form [formGroup]="userform" (ngSubmit)="onSubmit(userform.value)">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Correo electrónico *:</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Escribe tu correo" formControlName="name">
+        <div *ngIf="!userform.controls['name'].valid&&userform.controls['name'].dirty">
+            <small class="form-text text-muted" *ngIf="userform.controls['name'].errors['required']">Por favor escribe el correo electrónico del usuario. </small>
+            <small class="form-text text-muted" *ngIf="userform.controls['name'].errors['name']">El correo electrónico del usuario debe cumplir con el formato ej. name@domain.com. </small>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Contraseña *:</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" formControlName="password">
+        <div *ngIf="!userform.controls['password'].valid&&userform.controls['password'].dirty">
+            <small *ngIf="userform.controls['password'].errors['required']">Por favor escribela contraseña. </small>
+            <small *ngIf="userform.controls['password'].errors['minlength']">La contraseña debe contener más de 8 cáracteres. </small>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!userform.valid || submitted">Acceder</button>
+</form>
