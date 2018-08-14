@@ -3,6 +3,7 @@ import { Validators, FormControl, FormGroup, FormBuilder} from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
+import swal from 'sweetalert'
 
 import { AuthService } from '../service/auth.service';
 import { PasswordValidator } from '../validator/password.validator';
@@ -41,9 +42,10 @@ export class RegisterComponent implements OnInit {
     var context = this;
     if ( this.userform.valid ) {
         this.authService.register(this.userform.value, function(status){
-          if ( status ){
-            alert('Usuario creado, por favor acceda al sitio');
-            context.router.navigateByUrl("login");
+          if ( status ) {
+            swal("Excelente!", "Se ha creado el usuario!", "success").then((value) => {
+              context.router.navigateByUrl("login");
+            });
           }
           else {
             context.submitted = false;
