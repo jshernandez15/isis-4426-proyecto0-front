@@ -41,23 +41,40 @@ export class EventComponent implements OnInit {
   
   onNew() {
     this.eventModel = Event.empty();
-    this.submitType = 'Save';
+    this.submitType = 'Guardar';
     this.showNew = true;
   }
   
   onSave() {
-    /*
-    if (this.submitType === 'Save') {
-      this.events.push(this.eventModel);
+    if(this.eventModel.category == "Selecciona una opción") {
+      swal("Lo sentimos!", "Debes indicar una categoria.", "error");
+      return;
+    }
+    if(this.eventModel.end == null || this.eventModel.init == null) {
+      swal("Lo sentimos!", "Debes indicar un rango de fechas.", "error");
+      return;
+    }
+    if(this.eventModel.stage == "Selecciona una opción") {
+      swal("Lo sentimos!", "Debes indicar una modalidad.", "error");
+      return;
+    }
+      
+    if (this.submitType === 'Guardar') {
+      this.eventService.createEvent(this.eventModel).subscribe(
+        response => this.events.push(response),
+        err => swal("Lo sentimos!", "El objeto no ha podido ser añadido.", "error")
+      );
     } else {
+      /*
       this.events[this.selectedRow].firstName = this.eventModel.firstName;
       this.events[this.selectedRow].lastName = this.eventModel.lastName;
       this.events[this.selectedRow].dob = this.eventModel.dob;
       this.events[this.selectedRow].email = this.eventModel.email;
       this.events[this.selectedRow].password = this.eventModel.password;
       this.events[this.selectedRow].country = this.eventModel.country;
+      */
     }
-    this.showNew = false;*/
+    this.showNew = false;
   }
   
   onEdit(index: number) {
@@ -65,7 +82,7 @@ export class EventComponent implements OnInit {
     this.selectedRow = index;
     this.eventModel = new Event();
     this.eventModel = Object.assign({}, this.events[this.selectedRow]);
-    this.submitType = 'Update';
+    this.submitType = 'Actualizar';
     this.showNew = true;
     */
   }
@@ -75,7 +92,7 @@ export class EventComponent implements OnInit {
       response => swal("Listo!", "El registro ha sido eliminado!", "success").then((value) => {
         this.events = this.events.filter(event => event.id != index);
       }),
-      err => swal("Lo sentimos!", "El objeto ya ha sido borrado!", "error")
+      err => swal("Lo sentimos!", "El objeto ya ha sido borrado.", "error")
     );
   }
   
@@ -83,7 +100,7 @@ export class EventComponent implements OnInit {
     this.showNew = false;
   }
   
-  onChangeCategories(category: string) {
+  onChangeCategory(category: string) {
     this.eventModel.category = category;
   }
 

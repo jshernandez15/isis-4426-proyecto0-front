@@ -14,6 +14,6 @@ export class Event {
 
     static empty() {
         let empty = ''
-        return new this(0, empty, empty, empty, empty, null, null, empty);
+        return new this(0, empty, 'Selecciona una opción', empty, empty, null, null, 'Selecciona una opción');
     }
 }
