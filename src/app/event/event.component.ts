@@ -65,26 +65,20 @@ export class EventComponent implements OnInit {
         err => swal("Lo sentimos!", "El objeto no ha podido ser añadido.", "error")
       );
     } else {
-      /*
-      this.events[this.selectedRow].firstName = this.eventModel.firstName;
-      this.events[this.selectedRow].lastName = this.eventModel.lastName;
-      this.events[this.selectedRow].dob = this.eventModel.dob;
-      this.events[this.selectedRow].email = this.eventModel.email;
-      this.events[this.selectedRow].password = this.eventModel.password;
-      this.events[this.selectedRow].country = this.eventModel.country;
-      */
+      this.eventService.editEvent(this.eventModel).subscribe(
+        response => this.events[this.selectedRow] = response,
+        err => swal("Lo sentimos!", "El objeto no ha podido ser editado.", "error")
+      );
     }
     this.showNew = false;
   }
   
   onEdit(index: number) {
-    /*
     this.selectedRow = index;
-    this.eventModel = new Event();
+    this.eventModel = Event.empty();
     this.eventModel = Object.assign({}, this.events[this.selectedRow]);
     this.submitType = 'Actualizar';
     this.showNew = true;
-    */
   }
   
   onDelete(index: number) {

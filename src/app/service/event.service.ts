@@ -14,40 +14,38 @@ import { Event } from '../model/event.model'
 export class EventService {
 
     constructor(private http: HttpClient) {}
-    
-    getEvents(): Observable<Event[]> {
-        const options = {
+
+    getOptions(): { headers: HttpHeaders } {
+        return {
             headers: new HttpHeaders({
                 'x-access-token': localStorage.getItem('token'),
                 'Accept': 'application/json'
             })
         };
-        return this.http.get<any>(environment.api + '/event', options);
+    }
+    
+    getEvents(): Observable<Event[]> {
+        return this.http.get<any>(environment.api + '/event', this.getOptions());
     }
 
     deleteEvent(index: number): Observable<any> {
-        const options = {
-            headers: new HttpHeaders({
-                'x-access-token': localStorage.getItem('token'),
-                'Accept': 'application/json'
-            })
-        };
-        return this.http.delete<any>(environment.api + '/event/' + index, options);
+        return this.http.delete<any>(environment.api + '/event/' + index, this.getOptions());
     }
 
-    createEvent(event: Event): Observable<any> {
-        const options = {
-            headers: new HttpHeaders({
-                'x-access-token': localStorage.getItem('token'),
-                'Accept': 'application/json'
-            })
-        };
-        const eventRq = {
+    requestFromEvent(event: Event) {
+        return {
             ...event, 
             init: event.init.year + "-" + event.init.month + "-" + event.init.day, 
             end: event.end.year + "-" + event.end.month + "-" + event.end.day
         };
-        return this.http.post<any>(environment.api + '/event/', eventRq, options);
+    }
+
+    createEvent(event: Event): Observable<any> {
+        return this.http.post<any>(environment.api + '/event/', this.requestFromEvent(event), this.getOptions());
+    }
+
+    editEvent(event: Event): Observable<any> {
+        return this.http.put<any>(environment.api + '/event/' + event.id, this.requestFromEvent(event), this.getOptions());
     }
 
 }

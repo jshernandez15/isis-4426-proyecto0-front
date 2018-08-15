@@ -26,7 +26,7 @@
           <td>{{ event.end | amTz:'America/Bogota' }}</td>
           <td>{{ event.stage }}</td>
           <td>
-            <button type="button" class="btn btn-info" (click)="onEdit(event.id)">Editar</button>
+            <button type="button" class="btn btn-info" (click)="onEdit(i)">Editar</button>
           </td>
           <td>
             <button type="button" class="btn btn-danger" (click)="onDelete(event.id)">Eliminar</button>
