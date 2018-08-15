@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import swal from 'sweetalert'
 
 import { Event } from '../model/event.model'
+import { EventService } from '../service/event.service';
 
 @Component({
-  selector: 'app-registration',
+  selector: 'app-event',
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.css']
 })
@@ -12,62 +14,80 @@ export class EventComponent implements OnInit {
   
   events: Event[] = [];
   
-  regModel: Event;
+  eventModel: Event;
   
   showNew: Boolean = false;
   
-  submitType: string = 'Save';
+  submitType: string = 'Guardar';
   
   selectedRow: number;
   
-  countries: string[] = ['US', 'UK', 'India', 'UAE'];
+  categories: string[] = ['Conferencia', 'Seminario', 'Congreso', 'Curso'];
+
+  modalities: string[] = ['Presencial', 'Virtual'];
   
-  constructor() {
-    this.events.push(new Event('Johan', 'Peter', {year: 1980, month: 5, day: 12}, 'johan@gmail.com', 'johan123', 'UK'));
-    this.events.push(new Event('Mohamed', 'Tariq', {year: 1975, month: 12, day: 3}, 'tariq@gmail.com', 'tariq123', 'UAE'));
-    this.events.push(new Event('Nirmal', 'Kumar', {year: 1970, month: 7, day: 25}, 'nirmal@gmail.com', 'nirmal123', 'India'));
+  constructor(private eventService: EventService) {
   }
   
   ngOnInit() {
+    this.eventService.getEvents();
+    this.loadList();
+  }
+
+  private loadList(): void {
+      this.eventService.getEvents()
+          .subscribe(events => this.events = events);
   }
   
   onNew() {
-    this.regModel = new Event();
+    this.eventModel = Event.empty();
     this.submitType = 'Save';
     this.showNew = true;
   }
   
   onSave() {
+    /*
     if (this.submitType === 'Save') {
-      this.events.push(this.regModel);
+      this.events.push(this.eventModel);
     } else {
-      this.events[this.selectedRow].firstName = this.regModel.firstName;
-      this.events[this.selectedRow].lastName = this.regModel.lastName;
-      this.events[this.selectedRow].dob = this.regModel.dob;
-      this.events[this.selectedRow].email = this.regModel.email;
-      this.events[this.selectedRow].password = this.regModel.password;
-      this.events[this.selectedRow].country = this.regModel.country;
+      this.events[this.selectedRow].firstName = this.eventModel.firstName;
+      this.events[this.selectedRow].lastName = this.eventModel.lastName;
+      this.events[this.selectedRow].dob = this.eventModel.dob;
+      this.events[this.selectedRow].email = this.eventModel.email;
+      this.events[this.selectedRow].password = this.eventModel.password;
+      this.events[this.selectedRow].country = this.eventModel.country;
     }
-    this.showNew = false;
+    this.showNew = false;*/
   }
   
   onEdit(index: number) {
+    /*
     this.selectedRow = index;
-    this.regModel = new Event();
-    this.regModel = Object.assign({}, this.events[this.selectedRow]);
+    this.eventModel = new Event();
+    this.eventModel = Object.assign({}, this.events[this.selectedRow]);
     this.submitType = 'Update';
     this.showNew = true;
+    */
   }
   
   onDelete(index: number) {
-    this.events.splice(index, 1);
+    this.eventService.deleteEvent(index).subscribe(
+      response => swal("Listo!", "El registro ha sido eliminado!", "success").then((value) => {
+        this.events = this.events.filter(event => event.id != index);
+      }),
+      err => swal("Lo sentimos!", "El objeto ya ha sido borrado!", "error")
+    );
   }
   
   onCancel() {
     this.showNew = false;
   }
   
-  onChangeCountry(country: string) {
-    this.regModel.country = country;
+  onChangeCategories(category: string) {
+    this.eventModel.category = category;
+  }
+
+  onChangeModality(stage: string) {
+    this.eventModel.stage = stage;
   }
 }
