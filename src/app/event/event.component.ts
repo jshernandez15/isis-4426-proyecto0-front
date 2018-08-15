@@ -80,6 +80,18 @@ export class EventComponent implements OnInit {
     this.submitType = 'Actualizar';
     this.showNew = true;
   }
+
+  onView(index: number) {
+    swal(
+      "Nombre: " + this.events[index].name + "\n" +
+      "Categoria: " + this.events[index].category + "\n" +
+      "Lugar: " + this.events[index].place + "\n" +
+      "Dirección: " + this.events[index].address + "\n" +
+      "Inicio: " + this.events[index].init + "\n" +
+      "Fin: " + this.events[index].end + "\n" +
+      "Modalidad: " + this.events[index].stage
+    );
+  }
   
   onDelete(index: number) {
     this.eventService.deleteEvent(index).subscribe(

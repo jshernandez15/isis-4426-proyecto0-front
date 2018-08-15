@@ -7,24 +7,25 @@
           <th>Nombre</th>
           <th>Categoría</th>
           <th>Lugar</th>
-          <th>Dirección</th>
-          <th>Fecha inicio</th>
-          <th>Fecha fin</th>
           <th>Modelo</th>
+          <th></th>
           <th></th>
           <th></th>
         </tr>
       </thead>
       <tbody>
+        <tr *ngIf='events.length == 0'>
+          <td colspan="8">No hay registros aún!</td>
+        </tr>
         <tr *ngFor="let event of events; let i = index">
           <th scope="row">{{ i + 1 }}</th>
           <td>{{ event.name }}</td>
           <td>{{ event.category }}</td>
           <td>{{ event.place }}</td>
-          <td>{{ event.address }}</td>
-          <td>{{ event.init | amTz:'America/Bogota' }}</td>
-          <td>{{ event.end | amTz:'America/Bogota' }}</td>
           <td>{{ event.stage }}</td>
+          <td>
+            <button type="button" class="btn btn-warning" (click)="onView(i)">Ver detalle</button>
+          </td>
           <td>
             <button type="button" class="btn btn-info" (click)="onEdit(i)">Editar</button>
           </td>
