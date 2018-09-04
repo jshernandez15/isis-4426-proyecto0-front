@@ -66,7 +66,7 @@ export class StatusCreateComponent implements OnInit, OnDestroy {
     }
 
     if (event.type === HttpEventType.Response) {
-      console.log(event.body.path);
+      swal("Exito", "Video subido", "success");
       this.uploadComplete = true
       this.serverResponse = event.body
     }

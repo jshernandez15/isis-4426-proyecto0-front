@@ -22,7 +22,7 @@ export class UploadComponent implements OnInit {
 
   onSave() {
 
-    if (this.statusCreateComponent) {
+    if (this.statusCreateComponent && this.statusCreateComponent.serverResponse) {
       this.videoModel.path = this.statusCreateComponent.serverResponse.path;
     }
 
@@ -43,7 +43,7 @@ export class UploadComponent implements OnInit {
       return;
     }
     if (this.videoModel.path == "") {
-      swal("Lo sentimos!", "Debes indicar una path", "error");
+      swal("Lo sentimos!", "Debes subir un video", "error");
       return;
     }
     console.log(this.videoModel);
