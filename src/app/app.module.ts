@@ -15,6 +15,10 @@ import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { UrlPipe } from './pipe/url.pipe';
 import { VideoListComponent } from './public/video-list/video-list.component';
+import { FileUploadClientService } from './upload/upload.service';
+import { StatusCreateComponent } from './status-create/status-create.component';
+import { UploadComponent } from './upload/upload.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +29,9 @@ import { VideoListComponent } from './public/video-list/video-list.component';
     LoginComponent,
     RegisterComponent,
     UrlPipe,
-    VideoListComponent
+    VideoListComponent,
+    UploadComponent,
+    StatusCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +42,7 @@ import { VideoListComponent } from './public/video-list/video-list.component';
     HttpClientModule,
     MomentTimezoneModule
   ],
-  providers: [],
+  providers: [FileUploadClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

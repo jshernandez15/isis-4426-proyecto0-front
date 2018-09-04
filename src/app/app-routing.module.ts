@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuardService } from './guard/auth.guard';
 import { RegisterComponent } from './register/register.component';
 import { VideoListComponent } from './public/video-list/video-list.component';
+import { UploadComponent } from './upload/upload.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'public/:url',
     component: VideoListComponent
+  },
+  {
+    path: 'upload',
+    component: UploadComponent
   },
   { 
     path: '**',

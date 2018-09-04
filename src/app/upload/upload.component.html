@@ -1,0 +1,53 @@
+<h2>Subir Video</h2>
+<div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="message  !== undefined">
+  <strong>{{ message.summary }}</strong> {{ message.detail }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form (ngSubmit)="onSave()" #f="ngForm">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Nombres *:</label>
+    <input type="text" [(ngModel)]="videoModel.name" name="name" class="form-control" id="nameInput" placeholder="Escribe tus nombres">
+    <div *ngIf="false">
+      <small class="form-text text-muted" *ngIf="false">Por favor escribe el correo electrónico del usuario. </small>
+      <small class="form-text text-muted" *ngIf="false">El correo electrónico del usuario debe cumplir con el formato ej.
+        name@domain.com. </small>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Apellidos *:</label>
+    <input type="text" [(ngModel)]="videoModel.lastName" name="lastName" class="form-control" id="lastNameInput" aria-describedby="namesHelp"
+      placeholder="Escribe tus apellidos">
+    <div *ngIf="false">
+      <small class="form-text text-muted" *ngIf="false">Por favor escribe el correo electrónico del usuario. </small>
+      <small class="form-text text-muted" *ngIf="false">El correo electrónico del usuario debe cumplir con el formato ej.
+        name@domain.com. </small>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Correo electrónico *:</label>
+    <input type="email" [(ngModel)]="videoModel.email" name="email" class="form-control" id="emailInput" aria-describedby="emailHelp"
+      placeholder="Escribe tu correo">
+    <div *ngIf="false">
+      <small class="form-text text-muted" *ngIf="false">Por favor escribe el correo electrónico del usuario. </small>
+      <small class="form-text text-muted" *ngIf="false">El correo electrónico del usuario debe cumplir con el formato ej.
+        name@domain.com. </small>
+    </div>
+  </div>
+  <div class="form-group">
+      <app-status-create></app-status-create>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Descripción *:</label>
+    <textarea [(ngModel)]="videoModel.description" name="description" class="form-control" id="descriptionInput" aria-describedby="emailHelp"
+      placeholder="Escribe tu correo">
+    </textarea>
+    <div *ngIf="false">
+      <small class="form-text text-muted" *ngIf="false">Por favor escribe el correo electrónico del usuario. </small>
+      <small class="form-text text-muted" *ngIf="false">El correo electrónico del usuario debe cumplir con el formato ej.
+        name@domain.com. </small>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="submitted">Subir Video</button>
+</form>
