@@ -6,9 +6,6 @@
         <tr>
           <th>#</th>
           <th>Nombre</th>
-          <th>Categoría</th>
-          <th>Lugar</th>
-          <th>Modelo</th>
           <th></th>
           <th></th>
           <th></th>
@@ -21,9 +18,6 @@
         <tr *ngFor="let competition of competitions; let i = index">
           <th scope="row">{{ i + 1 }}</th>
           <td>{{ competition.name }}</td>
-          <td>{{ competition.category }}</td>
-          <td>{{ competition.place }}</td>
-          <td>{{ competition.stage }}</td>
           <td>
             <button type="button" class="btn btn-warning" (click)="onView(i)">Ver detalle</button>
           </td>
@@ -51,26 +45,16 @@
             <input class="form-control" type="text" [(ngModel)]="competitionModel.name" name="name" required minlength="2" />
           </div>
         </div>
-        
-        <div class="form-group row">
-          <label for="category-input" class="col-2 col-form-label">Categoria</label>
-          <div class="col-10 dropdown" ngbDropdown myDrop="ngbDropdown">
-            <button type="button" class="btn btn-outline-primary" id="dropdownManual" name="category" ngbDropdownToggle>{{competitionModel.category}}</button>
-            <div ngbDropdownMenu aria-labelledby="dropdownManual">
-              <button type="button" class="dropdown-item" *ngFor="let category of categories" (click)="onChangeCategory(category)">{{category}}</button>
-            </div>
-          </div>
-        </div>
 
         <div class="form-group row">
-          <label for="place-input" class="col-2 col-form-label">Lugar</label>
+          <label for="place-input" class="col-2 col-form-label">Banner</label>
           <div class="col-10">
-            <input class="form-control" type="text" [(ngModel)]="competitionModel.place" name="place" required>
+            <input class="form-control" type="text" [(ngModel)]="competitionModel.banner" name="banner" required>
           </div>
         </div>
 
         <div class="form-group row">
-          <label for="address-input" class="col-2 col-form-label">Dirección</label>
+          <label for="address-input" class="col-2 col-form-label">URL</label>
           <div class="col-10">
             <input class="form-control" type="text" [(ngModel)]="competitionModel.address" name="address" required>
           </div>
@@ -97,12 +81,9 @@
         </div>
 
         <div class="form-group row">
-          <label for="stage-input" class="col-2 col-form-label">Modalidad</label>
-          <div class="col-10 dropdown" ngbDropdown myDrop="ngbDropdown2">
-            <button type="button" class="btn btn-outline-primary" id="dropdownManual" name="stage" ngbDropdownToggle>{{competitionModel.stage}}</button>
-            <div ngbDropdownMenu aria-labelledby="dropdownManual">
-              <button type="button" class="dropdown-item" *ngFor="let modality of modalities" (click)="onChangeModality(modality)">{{modality}}</button>
-            </div>
+          <label for="name-input" class="col-2 col-form-label">Premio</label>
+          <div class="col-10">
+            <input class="form-control" type="text" [(ngModel)]="competitionModel.prize" name="prize" required minlength="2" />
           </div>
         </div>
 

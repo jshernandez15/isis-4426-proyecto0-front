@@ -22,8 +22,6 @@ export class CompetitionComponent implements OnInit {
   
   selectedRow: number;
   
-  categories: string[] = ['Conferencia', 'Seminario', 'Congreso', 'Curso'];
-
   modalities: string[] = ['Presencial', 'Virtual'];
   
   constructor(private competitionService: CompetitionService) {
@@ -46,16 +44,8 @@ export class CompetitionComponent implements OnInit {
   }
   
   onSave() {
-    if(this.competitionModel.category == "Selecciona una opción") {
-      swal("Lo sentimos!", "Debes indicar una categoria.", "error");
-      return;
-    }
     if(this.competitionModel.end == null || this.competitionModel.init == null) {
       swal("Lo sentimos!", "Debes indicar un rango de fechas.", "error");
-      return;
-    }
-    if(this.competitionModel.stage == "Selecciona una opción") {
-      swal("Lo sentimos!", "Debes indicar una modalidad.", "error");
       return;
     }
       
@@ -84,12 +74,11 @@ export class CompetitionComponent implements OnInit {
   onView(index: number) {
     swal(
       "Nombre: " + this.competitions[index].name + "\n" +
-      "Categoria: " + this.competitions[index].category + "\n" +
-      "Lugar: " + this.competitions[index].place + "\n" +
+      "Lugar: " + this.competitions[index].banner + "\n" +
       "Dirección: " + this.competitions[index].address + "\n" +
       "Inicio: " + this.competitions[index].init + "\n" +
       "Fin: " + this.competitions[index].end + "\n" +
-      "Modalidad: " + this.competitions[index].stage
+      "Modalidad: " + this.competitions[index].prize
     );
   }
   
@@ -105,12 +94,5 @@ export class CompetitionComponent implements OnInit {
   onCancel() {
     this.showNew = false;
   }
-  
-  onChangeCategory(category: string) {
-    this.competitionModel.category = category;
-  }
 
-  onChangeModality(stage: string) {
-    this.competitionModel.stage = stage;
-  }
 }
