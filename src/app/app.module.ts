@@ -13,6 +13,7 @@ import { CompetitionComponent } from './competition/competition.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { RegisterComponent } from './register/register.component';
+import { UrlPipe } from './pipe/url.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { RegisterComponent } from './register/register.component';
     HomeComponent,
     CompetitionComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UrlPipe
   ],
   imports: [
     BrowserModule,
