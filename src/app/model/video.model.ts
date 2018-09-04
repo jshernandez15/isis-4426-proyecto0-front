@@ -2,7 +2,7 @@ import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
 
 export class Video {
     constructor(
-        public id: number,
+        public id_video: number,
         public name: string = '',
         public lastName: string = '',
         public email: string = '',

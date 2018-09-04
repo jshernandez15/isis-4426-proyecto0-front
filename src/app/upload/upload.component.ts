@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Video } from '../model/video.model';
 import { FormGroup } from '@angular/forms';
 import { StatusCreateComponent } from '../status-create/status-create.component';
+import { VideoService } from '../service/video.service';
 
 @Component({
   selector: 'app-upload',
@@ -14,7 +15,11 @@ export class UploadComponent implements OnInit {
   statusFormGroup: FormGroup;
   @ViewChild(StatusCreateComponent) statusCreateComponent: StatusCreateComponent;
 
-  constructor() { }
+  constructor(private videoService: VideoService) {
+  }
+
+  videos: Video[] = [];
+
 
   ngOnInit() {
     this.videoModel = Video.empty();
@@ -46,6 +51,12 @@ export class UploadComponent implements OnInit {
       swal("Lo sentimos!", "Debes subir un video", "error");
       return;
     }
+
+    this.videoService.createVideo(this.videoModel).subscribe(
+      response => this.videos.push(response),
+      err => swal("Lo sentimos!", "El objeto no ha podido ser añadido.", "error")
+    );
+
     console.log(this.videoModel);
   }
 
