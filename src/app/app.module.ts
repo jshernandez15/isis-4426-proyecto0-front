@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { UrlPipe } from './pipe/url.pipe';
+import { VideoListComponent } from './public/video-list/video-list.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { UrlPipe } from './pipe/url.pipe';
     CompetitionComponent,
     LoginComponent,
     RegisterComponent,
-    UrlPipe
+    UrlPipe,
+    VideoListComponent
   ],
   imports: [
     BrowserModule,

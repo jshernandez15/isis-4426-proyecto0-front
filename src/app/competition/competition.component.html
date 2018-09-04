@@ -17,7 +17,11 @@
         </tr>
         <tr *ngFor="let competition of competitions; let i = index">
           <th scope="row">{{ i + 1 }}</th>
-          <td>{{ competition.name }}</td>
+          <td>
+            <a target="_blank" href="{{ competition.address | url }}">
+            {{ competition.name }}
+            </a>
+          </td>
           <td>
             <button type="button" class="btn btn-warning" (click)="onView(i)">Ver detalle</button>
           </td>

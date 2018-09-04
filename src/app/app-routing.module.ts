@@ -6,6 +6,7 @@ import { CompetitionComponent } from './competition/competition.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuardService } from './guard/auth.guard';
 import { RegisterComponent } from './register/register.component';
+import { VideoListComponent } from './public/video-list/video-list.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path: 'registration',
     component: RegisterComponent
+  },
+  {
+    path: 'public/:url',
+    component: VideoListComponent
   },
   { 
     path: '**',
