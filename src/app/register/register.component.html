@@ -6,30 +6,46 @@
     </button>
 </div>
 <form [formGroup]="userform" (ngSubmit)="onSubmit(userform.value)">
-  <div class="form-group">
-      <label for="exampleInputEmail1">Correo electrónico *:</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Escribe tu correo" formControlName="name">
-      <div *ngIf="!userform.controls['name'].valid&&userform.controls['name'].dirty">
-          <small class="form-text text-muted" *ngIf="userform.controls['name'].errors['required']">Por favor escribe el correo electrónico del usuario. </small>
-          <small class="form-text text-muted" *ngIf="userform.controls['name'].errors['email']">El correo electrónico del usuario debe cumplir con el formato ej. name@domain.com. </small>
-      </div>
-  </div>
-  <div class="form-group">
-      <label for="pass">Contraseña *:</label>
-      <input type="password" class="form-control" id="pass" placeholder="Contraseña" formControlName="password">
-      <div *ngIf="!userform.controls['password'].valid&&userform.controls['password'].dirty">
-          <small *ngIf="userform.controls['password'].errors['required']">Por favor escribela contraseña. </small>
-          <small *ngIf="userform.controls['password'].errors['minlength']">La contraseña debe contener más de 8 cáracteres. </small>
-      </div>
-  </div>
-  <div class="form-group">
-    <label for="repeatPass">Repite la contraseña *:</label>
-    <input type="password" class="form-control" id="repeatPass" placeholder="Contraseña" formControlName="confirmPassword">
-    <div *ngIf="!userform.controls['confirmPassword'].valid&&userform.controls['confirmPassword'].dirty">
-        <small *ngIf="userform.controls['confirmPassword'].errors['required']">Por favor escribela contraseña. </small>
-        <small *ngIf="userform.controls['confirmPassword'].errors['minlength']">La contraseña debe contener más de 8 cáracteres. </small>
-        <small *ngIf="userform.controls['confirmPassword'].errors['matchPassword']">Las contraseñas deben coincidir. </small>
+    <div class="form-group">
+        <label for="firstName">Nombres *:</label>
+        <input type="text" class="form-control" id="firstName" aria-describedby="firstNameHelp" placeholder="Escribe tu nombre" formControlName="firstName">
+        <div *ngIf="!userform.controls['firstName'].valid&&userform.controls['firstName'].dirty">
+            <small *ngIf="userform.controls['firstName'].errors['required']">Por favor escribe tu nombre. </small>
+            <small *ngIf="userform.controls['firstName'].errors['minlength']">El nombre debe contener más de 4 cáracteres. </small>
+        </div>
     </div>
-</div>
-  <button type="submit" class="btn btn-primary" [disabled]="!userform.valid || submitted">Crear usuario</button>
+    <div class="form-group">
+            <label for="lastName">Apellidos *:</label>
+            <input type="text" class="form-control" id="lastName" aria-describedby="lastNameHelp" placeholder="Escribe tus apellidos" formControlName="lastName">
+            <div *ngIf="!userform.controls['lastName'].valid&&userform.controls['lastName'].dirty">
+                <small *ngIf="userform.controls['lastName'].errors['required']">Por favor escribe tu apellido. </small>
+                <small *ngIf="userform.controls['lastName'].errors['minlength']">El apellido debe contener más de 4 cáracteres. </small>
+            </div>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Correo electrónico *:</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Escribe tu correo" formControlName="name">
+        <div *ngIf="!userform.controls['name'].valid&&userform.controls['name'].dirty">
+            <small class="form-text text-muted" *ngIf="userform.controls['name'].errors['required']">Por favor escribe el correo electrónico del usuario. </small>
+            <small class="form-text text-muted" *ngIf="userform.controls['name'].errors['email']">El correo electrónico del usuario debe cumplir con el formato ej. name@domain.com. </small>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="pass">Contraseña *:</label>
+        <input type="password" class="form-control" id="pass" placeholder="Contraseña" formControlName="password">
+        <div *ngIf="!userform.controls['password'].valid&&userform.controls['password'].dirty">
+            <small *ngIf="userform.controls['password'].errors['required']">Por favor escribela contraseña. </small>
+            <small *ngIf="userform.controls['password'].errors['minlength']">La contraseña debe contener más de 8 cáracteres. </small>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="repeatPass">Repite la contraseña *:</label>
+        <input type="password" class="form-control" id="repeatPass" placeholder="Contraseña" formControlName="confirmPassword">
+        <div *ngIf="!userform.controls['confirmPassword'].valid&&userform.controls['confirmPassword'].dirty">
+            <small *ngIf="userform.controls['confirmPassword'].errors['required']">Por favor escribela contraseña. </small>
+            <small *ngIf="userform.controls['confirmPassword'].errors['minlength']">La contraseña debe contener más de 8 cáracteres. </small>
+            <small *ngIf="userform.controls['confirmPassword'].errors['matchPassword']">Las contraseñas deben coincidir. </small>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!userform.valid || submitted">Crear usuario</button>
 </form>

@@ -32,9 +32,11 @@ export class RegisterComponent implements OnInit {
     this.userform = this.fb.group({
         'name': new FormControl('', Validators.compose([Validators.required, Validators.email])),
         'password': new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
-        'confirmPassword': new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)]))
+        'confirmPassword': new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
+        'firstName': new FormControl('', Validators.compose([Validators.required, Validators.minLength(4)])),
+        'lastName': new FormControl('', Validators.compose([Validators.required, Validators.minLength(4)])),
     }, {
-      validator: PasswordValidator.MatchPassword // your validation method
+      validator: PasswordValidator.MatchPassword
     });
   }
 
