@@ -14,15 +14,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngIf='events.length == 0'>
+        <tr *ngIf='competitions.length == 0'>
           <td colspan="8">No hay registros aún!</td>
         </tr>
-        <tr *ngFor="let event of events; let i = index">
+        <tr *ngFor="let competition of competitions; let i = index">
           <th scope="row">{{ i + 1 }}</th>
-          <td>{{ event.name }}</td>
-          <td>{{ event.category }}</td>
-          <td>{{ event.place }}</td>
-          <td>{{ event.stage }}</td>
+          <td>{{ competition.name }}</td>
+          <td>{{ competition.category }}</td>
+          <td>{{ competition.place }}</td>
+          <td>{{ competition.stage }}</td>
           <td>
             <button type="button" class="btn btn-warning" (click)="onView(i)">Ver detalle</button>
           </td>
@@ -30,7 +30,7 @@
             <button type="button" class="btn btn-info" (click)="onEdit(i)">Editar</button>
           </td>
           <td>
-            <button type="button" class="btn btn-danger" (click)="onDelete(event.id)">Eliminar</button>
+            <button type="button" class="btn btn-danger" (click)="onDelete(competition.id)">Eliminar</button>
           </td>
         </tr>
       </tbody>
@@ -47,14 +47,14 @@
         <div class="form-group row">
           <label for="name-input" class="col-2 col-form-label">Nombre</label>
           <div class="col-10">
-            <input class="form-control" type="text" [(ngModel)]="eventModel.name" name="name" required minlength="2" />
+            <input class="form-control" type="text" [(ngModel)]="competitionModel.name" name="name" required minlength="2" />
           </div>
         </div>
         
         <div class="form-group row">
           <label for="category-input" class="col-2 col-form-label">Categoria</label>
           <div class="col-10 dropdown" ngbDropdown myDrop="ngbDropdown">
-            <button type="button" class="btn btn-outline-primary" id="dropdownManual" name="category" ngbDropdownToggle>{{eventModel.category}}</button>
+            <button type="button" class="btn btn-outline-primary" id="dropdownManual" name="category" ngbDropdownToggle>{{competitionModel.category}}</button>
             <div ngbDropdownMenu aria-labelledby="dropdownManual">
               <button type="button" class="dropdown-item" *ngFor="let category of categories" (click)="onChangeCategory(category)">{{category}}</button>
             </div>
@@ -64,21 +64,21 @@
         <div class="form-group row">
           <label for="place-input" class="col-2 col-form-label">Lugar</label>
           <div class="col-10">
-            <input class="form-control" type="text" [(ngModel)]="eventModel.place" name="place" required>
+            <input class="form-control" type="text" [(ngModel)]="competitionModel.place" name="place" required>
           </div>
         </div>
 
         <div class="form-group row">
           <label for="address-input" class="col-2 col-form-label">Dirección</label>
           <div class="col-10">
-            <input class="form-control" type="text" [(ngModel)]="eventModel.address" name="address" required>
+            <input class="form-control" type="text" [(ngModel)]="competitionModel.address" name="address" required>
           </div>
         </div>
 
         <div class="form-group row">
           <label for="init-input" class="col-2 col-form-label">Fecha de inicio</label>
           <div class="col-4 input-group">
-            <input type="text" class="form-control" placeholder="yyyy-mm-dd" name="init" [(ngModel)]="eventModel.init" ngbDatepicker #init="ngbDatepicker">
+            <input type="text" class="form-control" placeholder="yyyy-mm-dd" name="init" [(ngModel)]="competitionModel.init" ngbDatepicker #init="ngbDatepicker">
             <button class="input-group-addon" (click)="init.toggle()" type="button">
               <img src="assets/img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
             </button>
@@ -88,7 +88,7 @@
         <div class="form-group row">
           <label for="end-input" class="col-2 col-form-label">Fecha de fin</label>
           <div class="col-4 input-group">
-            <input type="text" class="form-control" placeholder="yyyy-mm-dd" name="end" [(ngModel)]="eventModel.end" ngbDatepicker #end="ngbDatepicker">
+            <input type="text" class="form-control" placeholder="yyyy-mm-dd" name="end" [(ngModel)]="competitionModel.end" ngbDatepicker #end="ngbDatepicker">
             <button class="input-group-addon" (click)="end.toggle()" type="button">
               <img src="assets/img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
             </button>
@@ -98,7 +98,7 @@
         <div class="form-group row">
           <label for="stage-input" class="col-2 col-form-label">Modalidad</label>
           <div class="col-10 dropdown" ngbDropdown myDrop="ngbDropdown2">
-            <button type="button" class="btn btn-outline-primary" id="dropdownManual" name="stage" ngbDropdownToggle>{{eventModel.stage}}</button>
+            <button type="button" class="btn btn-outline-primary" id="dropdownManual" name="stage" ngbDropdownToggle>{{competitionModel.stage}}</button>
             <div ngbDropdownMenu aria-labelledby="dropdownManual">
               <button type="button" class="dropdown-item" *ngFor="let modality of modalities" (click)="onChangeModality(modality)">{{modality}}</button>
             </div>

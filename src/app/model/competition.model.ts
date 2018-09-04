@@ -1,6 +1,6 @@
 import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
 
-export class Event {
+export class Competition {
     constructor(
         public id: number,
         public name: string = '',
