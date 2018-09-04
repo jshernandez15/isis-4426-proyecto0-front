@@ -1,3 +1,59 @@
-<h1 class="mt-5">Concursos SmartTools</h1>
-<p class="lead" *ngIf="!isLoggedIn">Por favor regístrate para acceder al contenido</p>
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">Concursos SmartTools</h1>
+        <p class="lead text-muted">Crea concursos, comparte URLs y premia tu gente!</p>
+        <p *ngIf="!isLoggedIn">
+            <a routerLink="registration" class="btn btn-primary my-2">Crea tu cuenta para comenzar</a>&nbsp;
+            <a routerLink="login" class="btn btn-secondary my-2">Accede a la plataforma</a>
+        </p>
+    </div>
+</section>
+<section id="valor_agregado" *ngIf="!isLoggedIn">
+    <div class="container">
+        <div class="card-deck mb-3 text-center">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Gratis</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mes</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>1000 usuarios incluidos</li>
+                        <li>120 segundos de duración</li>
+                        <li>Notificaciones via correo</li>
+                    </ul>
+                    <a routerLink="registration" class="btn btn-lg btn-block btn-outline-primary">Regístrate ahora</a>
+                </div>
+            </div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Avanzado</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mes</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>1000 usuarios incluidos</li>
+                        <li>120 segundos de duración</li>
+                        <li>Notificaciones via correo</li>
+                    </ul>
+                    <a routerLink="registration" class="btn btn-lg btn-block btn-primary">Regístrate ahora</a>
+                </div>
+            </div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Empresas</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mes</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>Usuarios ilimitados incluidos</li>
+                        <li>120 segundos de duración</li>
+                        <li>Notificaciones via correo</li>
+                    </ul>
+                    <a href="mailto:isis4426@uniandes.edu.co" class="btn btn-lg btn-block btn-primary">Contáctanos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <app-competition *ngIf="isLoggedIn"></app-competition>
