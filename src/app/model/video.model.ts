@@ -1,4 +1,3 @@
-import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
 
 export class Video {
     constructor(

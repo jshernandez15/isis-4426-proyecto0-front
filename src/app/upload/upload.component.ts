@@ -59,6 +59,7 @@ export class UploadComponent implements OnInit {
       (response) => {
         this.videos.push(response);
         swal("Video agreagado exitosamente", "Gracias por participar", "success")
+        this.videoModel = Video.empty();
       },
       err => swal("Lo sentimos!", "El objeto no ha podido ser añadido.", "error")
     );

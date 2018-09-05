@@ -13,19 +13,14 @@ export class VideoService {
   createVideo(video: Video): Observable<any> {
     return this.http.post<any>(
       environment.api + "/video/",
-      this.requestFromCompetition(video),
-      this.getOptions()
+      this.requestFromCompetition(video)
     );
   }
 
-  getOptions(): { headers: HttpHeaders } {
-    return {
-      headers: new HttpHeaders({
-        "x-access-token": localStorage.getItem("token"),
-        Accept: "application/json"
-      })
-    };
-  }
+  getCompetitions(): Observable<any[]> {
+    return this.http.get<any>(environment.api + '/video');
+}
+
 
   requestFromCompetition(video: Video) {
     return {
