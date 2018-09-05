@@ -6,30 +6,25 @@
         <tr>
           <th>#</th>
           <th>Nombre</th>
-          <th></th>
-          <th></th>
-          <th></th>
+          <th>Descripcion</th>
+          <th>path</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngIf='videos.length == 0'>
           <td colspan="8">No hay registros aún!</td>
         </tr>
-        <tr *ngFor="let competition of competitions; let i = index">
-          <th scope="row">{{ i + 1 }}</th>
+        <tr *ngFor="let video of videos; let i = index">
+          <th scope="row"> {{video.id_video}}
+          </th>
           <td>
-            <a target="_blank" href="{{ competition.address | url }}">
-              {{ competition.name }}
-            </a>
+            {{video.name}}
           </td>
           <td>
-            <button type="button" class="btn btn-warning" (click)="onView(i)">Ver detalle</button>
+            {{video.description}}
           </td>
           <td>
-            <button type="button" class="btn btn-info" (click)="onEdit(i)">Editar</button>
-          </td>
-          <td>
-            <button type="button" class="btn btn-danger" (click)="onDelete(competition.id)">Eliminar</button>
+            {{video.path}}
           </td>
         </tr>
       </tbody>
@@ -40,5 +35,4 @@
       </button>
     </div>
 
-    <app-upload 
-    ></app-upload>
+    <app-upload [hidden]="!showForm"></app-upload>

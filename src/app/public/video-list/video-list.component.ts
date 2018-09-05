@@ -11,6 +11,7 @@ export class VideoListComponent implements OnInit {
 
   url: string;
   videos: any[] = [];
+  showForm: boolean;
 
   private sub: any;
 
@@ -18,9 +19,9 @@ export class VideoListComponent implements OnInit {
 
 
   ngOnInit() {
+    this.showForm = false;
     this.sub = this.router.params.subscribe(params => {
       this.url = decodeURI(params['url'].replace(/-/g, " "));
-
       //dispatch action to load the details here.
       this.loadList();
     });
@@ -29,7 +30,6 @@ export class VideoListComponent implements OnInit {
   private loadList(): void {
     this.videoService.getVideos(1)
       .subscribe(data => {
-        console.log(data);
         this.videos = this.videoService.convertObjectToDto(data);
       });
   }
@@ -37,4 +37,9 @@ export class VideoListComponent implements OnInit {
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
+
+  onNew(): void {
+    this.showForm = true;
+  }
+
 }
