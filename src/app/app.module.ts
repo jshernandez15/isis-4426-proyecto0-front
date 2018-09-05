@@ -1,23 +1,26 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import {MomentTimezoneModule} from 'angular-moment-timezone';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MomentTimezoneModule } from 'angular-moment-timezone';
+import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { HomeComponent } from './home/home.component';
 import { CompetitionComponent } from './competition/competition.component';
+import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { HttpClientModule } from '../../node_modules/@angular/common/http';
-import { RegisterComponent } from './register/register.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { UrlPipe } from './pipe/url.pipe';
 import { VideoListComponent } from './public/video-list/video-list.component';
-import { FileUploadClientService } from './upload/upload.service';
+import { RegisterComponent } from './register/register.component';
 import { StatusCreateComponent } from './status-create/status-create.component';
 import { UploadComponent } from './upload/upload.component';
+import { FileUploadClientService } from './upload/upload.service';
+import { VgCoreModule } from 'videogular2/core';
+import { VgControlsModule } from 'videogular2/controls';
+import { VgOverlayPlayModule } from 'videogular2/overlay-play';
+import { VgBufferingModule } from 'videogular2/buffering';
+
 
 
 @NgModule({
@@ -40,7 +43,11 @@ import { UploadComponent } from './upload/upload.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MomentTimezoneModule
+    MomentTimezoneModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule
   ],
   providers: [FileUploadClientService],
   bootstrap: [AppComponent]

@@ -35,4 +35,11 @@
       </button>
     </div>
 
+    <vg-player>
+      <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
+        <source src="http://192.168.1.67/cfsm/upload_bb0ac41f4e2a609e1b7832f1a1f759b2.mp4" type="video/mp4">
+      </video>
+    </vg-player>
+
+
     <app-upload [hidden]="!showForm"></app-upload>
