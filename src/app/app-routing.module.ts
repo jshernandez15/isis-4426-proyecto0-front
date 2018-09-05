@@ -18,7 +18,7 @@ const routes: Routes = [
   {
     path: 'competitions',
     component: CompetitionComponent,
-    canActivate: [AuthGuardService] 
+    canActivate: [AuthGuardService]
   },
   {
     path: 'competitions/:id',
@@ -38,16 +38,16 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: 'public/:url',
+    path: 'public/:url/:id',
     component: VideoListComponent
   },
   {
     path: 'upload',
     component: UploadComponent
   },
-  { 
+  {
     path: '**',
-    redirectTo: '' 
+    redirectTo: ''
   }
 ];
 

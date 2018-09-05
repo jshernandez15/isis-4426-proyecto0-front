@@ -1,0 +1,14 @@
+.container-video{
+    width: 15em;
+    height: 10em;
+}
+.center{
+    float: none;
+    margin: 0 auto;
+}
+
+td, tr, th
+{
+    text-align: center; 
+    vertical-align: middle;
+}
