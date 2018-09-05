@@ -1,33 +1,35 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Video } from '../model/video.model';
-import { FormGroup } from '@angular/forms';
-import { StatusCreateComponent } from '../status-create/status-create.component';
-import { VideoService } from '../service/video.service';
+import { Component, OnInit, ViewChild, Input } from "@angular/core";
+import { FormGroup } from "@angular/forms";
+import { Video } from "../model/video.model";
+import { VideoService } from "../service/video.service";
+import { StatusCreateComponent } from "../status-create/status-create.component";
 
 @Component({
-  selector: 'app-upload',
-  templateUrl: './upload.component.html',
+  selector: "app-upload",
+  templateUrl: "./upload.component.html"
   //styleUrls: ['./upload.component.css']
 })
 export class UploadComponent implements OnInit {
-
   videoModel: Video;
   statusFormGroup: FormGroup;
-  @ViewChild(StatusCreateComponent) statusCreateComponent: StatusCreateComponent;
+  @Input()
+  idCompetition: number;
+  @ViewChild(StatusCreateComponent)
+  statusCreateComponent: StatusCreateComponent;
 
-  constructor(private videoService: VideoService) {
-  }
+  constructor(private videoService: VideoService) { }
 
   videos: Video[] = [];
-
 
   ngOnInit() {
     this.videoModel = Video.empty();
   }
 
   onSave() {
-
-    if (this.statusCreateComponent && this.statusCreateComponent.serverResponse) {
+    if (
+      this.statusCreateComponent &&
+      this.statusCreateComponent.serverResponse
+    ) {
       this.videoModel.path = this.statusCreateComponent.serverResponse.path;
     }
 
@@ -53,18 +55,23 @@ export class UploadComponent implements OnInit {
     }
 
     this.videoModel.stateVideo = "PENDIENTE";
-    this.videoModel.idConcurso = 1;
+    console.log(this.idCompetition);
+    this.videoModel.idConcurso = this.idCompetition;
 
     this.videoService.createVideo(this.videoModel).subscribe(
-      (response) => {
+      response => {
         this.videos.push(response);
-        swal("Video agreagado exitosamente", "Gracias por participar", "success")
+        swal(
+          "Video agreagado exitosamente",
+          "Gracias por participar",
+          "success"
+        );
         this.videoModel = Video.empty();
       },
-      err => swal("Lo sentimos!", "El objeto no ha podido ser añadido.", "error")
+      err =>
+        swal("Lo sentimos!", "El objeto no ha podido ser añadido.", "error")
     );
 
     console.log(this.videoModel);
   }
-
 }

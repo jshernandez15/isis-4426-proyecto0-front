@@ -5,9 +5,9 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>Nombre</th>
-          <th>Descripcion</th>
-          <th>path</th>
+          <th colspan="2">Autor</th>
+          <th colspan="2">Descripcion</th>
+          <th style="text-align: center;">Video</th>
         </tr>
       </thead>
       <tbody>
@@ -17,14 +17,20 @@
         <tr *ngFor="let video of videos; let i = index">
           <th scope="row"> {{video.id_video}}
           </th>
-          <td>
-            {{video.name}}
+          <td colspan="2">
+            {{video.name}} {{video.lastName}}
           </td>
-          <td>
+          <td colspan="2">
             {{video.description}}
           </td>
           <td>
-            {{video.path}}
+            <div class="container-video center">
+              <vg-player>
+                <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
+                  <source src="http://localhost:81/cfsm/VID-20180724-WA0023.mp4" type="video/mp4">
+                </video>
+              </vg-player>
+            </div>
           </td>
         </tr>
       </tbody>
@@ -35,11 +41,6 @@
       </button>
     </div>
 
-    <vg-player>
-      <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
-        <source src="http://192.168.1.67/cfsm/upload_bb0ac41f4e2a609e1b7832f1a1f759b2.mp4" type="video/mp4">
-      </video>
-    </vg-player>
 
 
-    <app-upload [hidden]="!showForm"></app-upload>
+    <app-upload [idCompetition]="idCompetition" [hidden]="!showForm"></app-upload>
