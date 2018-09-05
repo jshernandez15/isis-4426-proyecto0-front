@@ -52,8 +52,14 @@ export class UploadComponent implements OnInit {
       return;
     }
 
+    this.videoModel.stateVideo = "PENDIENTE";
+    this.videoModel.idConcurso = 1;
+
     this.videoService.createVideo(this.videoModel).subscribe(
-      response => this.videos.push(response),
+      (response) => {
+        this.videos.push(response);
+        swal("Video agreagado exitosamente", "Gracias por participar", "success")
+      },
       err => swal("Lo sentimos!", "El objeto no ha podido ser añadido.", "error")
     );
 
