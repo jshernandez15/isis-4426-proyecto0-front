@@ -4,6 +4,7 @@ import swal from 'sweetalert'
 
 import { Competition } from '../model/competition.model'
 import { CompetitionService } from '../service/competition.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-competition',
@@ -24,7 +25,7 @@ export class CompetitionComponent implements OnInit {
   
   modalities: string[] = ['Presencial', 'Virtual'];
   
-  constructor(private competitionService: CompetitionService) {
+  constructor(private competitionService: CompetitionService, private router: Router) {
   }
   
   ngOnInit() {
@@ -72,14 +73,7 @@ export class CompetitionComponent implements OnInit {
   }
 
   onView(index: number) {
-    swal(
-      "Nombre: " + this.competitions[index].name + "\n" +
-      "Lugar: " + this.competitions[index].banner + "\n" +
-      "Dirección: " + this.competitions[index].address + "\n" +
-      "Inicio: " + this.competitions[index].init + "\n" +
-      "Fin: " + this.competitions[index].end + "\n" +
-      "Modalidad: " + this.competitions[index].prize
-    );
+    this.router.navigate(['competitions', this.competitions[index].id]);
   }
   
   onDelete(index: number) {

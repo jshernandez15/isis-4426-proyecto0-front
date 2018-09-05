@@ -1,0 +1,29 @@
+<h3>{{ competition?.name }}</h3>
+<div class=”container”>
+  <div class="reglist">
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <th>Banner</th>
+          <td>{{ competition?.banner }}</td>
+        </tr>
+        <tr>
+          <th>URL</th>
+          <td>{{ competition?.address | url  }}</td>
+        </tr>
+        <tr>
+          <th>Inicio</th>
+          <td>{{ competition?.init }}</td>
+        </tr>
+        <tr>
+          <th>Fin</th>
+          <td>{{ competition?.end }}</td>
+        </tr>
+        <tr>
+          <th>Premio</th>
+          <td>{{ competition?.prize }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

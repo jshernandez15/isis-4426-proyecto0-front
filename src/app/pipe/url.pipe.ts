@@ -6,7 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class UrlPipe implements PipeTransform {
 
   transform(value: string): string {
-    return window.location.href + "public/" + encodeURI( value.replace(/\ /g, "-") );
+    if(value == null) return "";
+    return window.location.origin + "/public/" + encodeURI( value.replace(/\ /g, "-") );
   }
 
 }

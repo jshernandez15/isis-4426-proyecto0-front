@@ -8,6 +8,7 @@ import { AuthGuardService } from './guard/auth.guard';
 import { RegisterComponent } from './register/register.component';
 import { VideoListComponent } from './public/video-list/video-list.component';
 import { UploadComponent } from './upload/upload.component';
+import { CompetitionDetailComponent } from './competition-detail/competition-detail.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: 'competitions',
     component: CompetitionComponent,
+    canActivate: [AuthGuardService] 
+  },
+  {
+    path: 'competitions/:id',
+    component: CompetitionDetailComponent,
     canActivate: [AuthGuardService] 
   },
   {

@@ -28,6 +28,12 @@ export class CompetitionService {
         return this.http.get<any>(environment.api + '/competition', this.getOptions());
     }
 
+    getCompetitionById(competitionId): Observable<Competition> {
+        return this.http.get<any>(
+            environment.api + '/competition/' + competitionId,
+            this.getOptions());
+    }
+
     deleteCompetition(index: number): Observable<any> {
         return this.http.delete<any>(environment.api + '/competition/' + index, this.getOptions());
     }
