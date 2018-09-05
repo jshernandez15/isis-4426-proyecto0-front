@@ -1,4 +1,44 @@
-<app-upload></app-upload>
-<p>
-  {{ url }}
-</p>
+<h3>Concurso: {{ url }} - Listado de videos</h3>
+<div class=”container”>
+  <div class="reglist">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf='videos.length == 0'>
+          <td colspan="8">No hay registros aún!</td>
+        </tr>
+        <tr *ngFor="let competition of competitions; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>
+            <a target="_blank" href="{{ competition.address | url }}">
+              {{ competition.name }}
+            </a>
+          </td>
+          <td>
+            <button type="button" class="btn btn-warning" (click)="onView(i)">Ver detalle</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-info" (click)="onEdit(i)">Editar</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="onDelete(competition.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-right">
+      <button type="submit" class="btn btn-primary" (click)="onNew()">
+        Nuevo
+      </button>
+    </div>
+
+    <app-upload 
+    ></app-upload>

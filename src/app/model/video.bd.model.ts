@@ -1,13 +1,13 @@
 
-export class Video {
+export class VideoBd {
     constructor(
         public id_video: number,
         public name: string = '',
-        public lastName: string = '',
+        public last_name: string = '',
         public email: string = '',
+        public path_real: string = '',
+        public path_convertido: string = '',
         public description: string = '',
-        public path: string,
-        public pathConvertido: string,
         public idConcurso: number,
         public stateVideo: string,
     ) { }
