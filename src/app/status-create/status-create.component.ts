@@ -20,7 +20,7 @@ export class StatusCreateComponent implements OnInit, OnDestroy {
   uploadingProgressing: boolean = false;
   fileUploadSub: any;
   serverResponse: any;
-  allowedFormats = ['mp4', 'avi'];
+  allowedFormats = ['mp4', 'avi', 'flv'];
 
   @ViewChild('myInput')
   myFileInput: any;
