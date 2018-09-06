@@ -9,9 +9,8 @@ import { VideoBd } from "../model/video.bd.model";
   providedIn: "root"
 })
 export class VideoService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   videos: Video[] = [];
-
 
   createVideo(video: Video): Observable<any> {
     return this.http.post<any>(
@@ -20,8 +19,16 @@ export class VideoService {
     );
   }
 
-  getVideos(id: number): Observable<any[]> {
-    return this.http.get<any>(environment.api + '/competition/' + id + '/videos');
+  getVideos(id: number, state: string = "PENDIENTE"): Observable<any[]> {
+    return this.http.get<any>(
+      environment.api + "/competition/" + id + "/videos/" + state
+    );
+  }
+
+  getVideosById(id: number): Observable<any[]> {
+    return this.http.get<any>(
+      environment.api + "/competition/" + id + "/videos"
+    );
   }
 
   convertObjectToDto(data: VideoBd[]): Video[] {
@@ -41,7 +48,6 @@ export class VideoService {
     });
     return this.videos;
   }
-
 
   requestFromCompetition(video: Video) {
     return {

@@ -65,7 +65,6 @@ export class UploadComponent implements OnInit {
     }
 
     this.videoModel.stateVideo = "PENDIENTE";
-    console.log(this.idCompetition);
     this.videoModel.idConcurso = this.idCompetition;
 
     this.videoService.createVideo(this.videoModel).subscribe(

@@ -72,7 +72,6 @@ export class StatusCreateComponent implements OnInit, OnDestroy {
     }
   }
   handleSubmit(event: any, statusNgForm: NgForm, statusFormGroup: FormControl) {
-    console.log(statusFormGroup);
     event.preventDefault()
     if (statusNgForm.submitted) {
 

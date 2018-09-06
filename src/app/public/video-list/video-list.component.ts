@@ -21,7 +21,7 @@ export class VideoListComponent implements OnInit {
     private router: ActivatedRoute,
     private videoService: VideoService,
     private route: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.showForm = false;
@@ -34,7 +34,7 @@ export class VideoListComponent implements OnInit {
   }
 
   private loadList(): void {
-    this.videoService.getVideos(this.idCompetition).subscribe(data => {
+    this.videoService.getVideos(this.idCompetition, 'COMPLETE').subscribe(data => {
       this.videos = this.videoService.convertObjectToDto(data);
     });
   }
