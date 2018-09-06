@@ -62,7 +62,7 @@
             {{ video.stateVideo }}
           </td>
           <td>
-            <div class="container-video center">
+            <div *ngIf="video.stateVideo=='Generado'" class="container-video center">
               <vg-player>
                 <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
                   <source src="{{urlVideos}}{{video.pathConvertido}}" type="video/mp4">
@@ -71,7 +71,7 @@
             </div>
           </td>
           <td>
-            <a class="btn btn-primary" href="{{urlReal}}{{video.path}}">Original</a>
+            <a *ngIf="video.stateVideo=='Generado'" class="btn btn-primary" href="{{urlReal}}{{video.path}}">Original</a>
           </td>
         </tr>
       </tbody>
