@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { VideoService } from "../../service/video.service";
 import { Video } from "../../model/video.model";
+import { constants } from '../../const/constants';
 
 @Component({
   selector: "app-video-list",
@@ -14,6 +15,8 @@ export class VideoListComponent implements OnInit {
 
   videos: any[] = [];
   showForm: boolean;
+
+  urlVideos = constants.PATH_VIDEOS;
 
   private sub: any;
 
