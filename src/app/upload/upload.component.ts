@@ -64,7 +64,7 @@ export class UploadComponent implements OnInit {
       return;
     }
 
-    this.videoModel.stateVideo = "EN PROCESO";
+    this.videoModel.stateVideo = "En proceso";
     this.videoModel.idConcurso = this.idCompetition;
 
     this.videoService.createVideo(this.videoModel).subscribe(
@@ -85,7 +85,7 @@ export class UploadComponent implements OnInit {
   }
   private loadList(): void {
     this.videoService
-      .getVideos(this.idCompetition, "GENERADO")
+      .getVideos(this.idCompetition, "Generado")
       .subscribe(data => {
         this.videos = this.videoService.convertObjectToDto(data);
         this.videosEmitter.emit(this.videos);
