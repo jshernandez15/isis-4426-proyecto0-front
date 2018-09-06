@@ -1,4 +1,11 @@
-import { Component, OnInit, ViewChild, Input } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  Input,
+  Output,
+  EventEmitter
+} from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { Video } from "../model/video.model";
 import { VideoService } from "../service/video.service";
@@ -19,7 +26,10 @@ export class UploadComponent implements OnInit {
 
   constructor(private videoService: VideoService) { }
 
-  videos: Video[] = [];
+  @Output()
+  videosEmitter = new EventEmitter<Video[]>();
+
+  videos: Video[];
 
   ngOnInit() {
     this.videoModel = Video.empty();
@@ -60,18 +70,24 @@ export class UploadComponent implements OnInit {
 
     this.videoService.createVideo(this.videoModel).subscribe(
       response => {
-        this.videos.push(response);
         swal(
           "Video agreagado exitosamente",
           "Gracias por participar",
           "success"
         );
         this.videoModel = Video.empty();
+        this.loadList();
       },
       err =>
         swal("Lo sentimos!", "El objeto no ha podido ser añadido.", "error")
     );
 
     console.log(this.videoModel);
+  }
+  private loadList(): void {
+    this.videoService.getVideos(this.idCompetition).subscribe(data => {
+      this.videos = this.videoService.convertObjectToDto(data);
+      this.videosEmitter.emit(this.videos);
+    });
   }
 }

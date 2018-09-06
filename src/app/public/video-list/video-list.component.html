@@ -43,4 +43,4 @@
 
 
 
-    <app-upload [idCompetition]="idCompetition" [hidden]="!showForm"></app-upload>
+    <app-upload [idCompetition]="idCompetition" (videosEmitter)="updateValue($event)" [hidden]="!showForm"></app-upload>

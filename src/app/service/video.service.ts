@@ -21,7 +21,6 @@ export class VideoService {
   }
 
   getVideos(id: number): Observable<any[]> {
-    console.log(id);
     return this.http.get<any>(environment.api + '/competition/' + id + '/videos');
   }
 

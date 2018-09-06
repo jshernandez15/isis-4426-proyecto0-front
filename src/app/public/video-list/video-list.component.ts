@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { VideoService } from "../../service/video.service";
+import { Video } from "../../model/video.model";
 
 @Component({
   selector: "app-video-list",
@@ -20,18 +21,16 @@ export class VideoListComponent implements OnInit {
     private router: ActivatedRoute,
     private videoService: VideoService,
     private route: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.showForm = false;
     this.sub = this.router.params.subscribe(params => {
-      console.log(this.router);
       this.url = decodeURI(params["url"].replace(/-/g, " "));
       this.idCompetition = Number(decodeURI(params["id"]));
       //dispatch action to load the details here.
       this.loadList();
     });
-
   }
 
   private loadList(): void {
@@ -46,5 +45,9 @@ export class VideoListComponent implements OnInit {
 
   onNew(): void {
     this.showForm = true;
+  }
+
+  updateValue(videos: Video[]) {
+    this.videos = videos;
   }
 }
