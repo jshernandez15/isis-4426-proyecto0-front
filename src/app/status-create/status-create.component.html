@@ -1,4 +1,4 @@
-<form [formGroup]='statusFormGroup' name="form" #statusNgForm='ngForm' (submit)='handleSubmit($event, statusNgForm, statusFormGroup)'>
+<form name="form" #statusNgForm='ngForm' (submit)='handleSubmit($event, statusNgForm, statusFormGroup)'>
   <label for="exampleInputEmail1">Adjuntar Video *:</label>
   <input #myInput type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Escribe tu correo"
     (change)="handleFileInput($event.target.files)">
