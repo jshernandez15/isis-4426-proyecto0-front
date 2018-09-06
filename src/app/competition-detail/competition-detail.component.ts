@@ -15,7 +15,8 @@ import { constants } from '../const/constants';
 export class CompetitionDetailComponent implements OnInit {
 
   competition: Competition;
-  urlVideos = environment.api + constants.PATH_VIDEOS;
+  urlVideos = constants.PATH_VIDEOS;
+  urlReal = constants.PATH_REAL;
 
 
   videos: Video[];
