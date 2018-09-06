@@ -10,10 +10,11 @@ export class Video {
         public pathConvertido: string,
         public idConcurso: number,
         public stateVideo: string,
+        public created: Date
     ) { }
 
     static empty() {
         let empty = ''
-        return new this(0, '', '', '', '', '', '', 0, '');
+        return new this(0, '', '', '', '', '', '', 0, '', null);
     }
 }
