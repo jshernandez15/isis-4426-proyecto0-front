@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { environment } from "../../environments/environment";
 
 const url = 'http://localhost:8000/upload';
 
@@ -10,11 +11,11 @@ const url = 'http://localhost:8000/upload';
 })
 export class FileUploadClientService {
 
-  apiBaseURL = 'http://127.0.0.1:3000/'
+  apiBaseURL = environment.api
   constructor(private http: HttpClient) { }
 
   fileUpload(fileItem: File, extraData?: object): any {
-    let apiCreateEndpoint = `${this.apiBaseURL}upload`
+    let apiCreateEndpoint = this.apiBaseURL + "/upload";
     const formData: FormData = new FormData();
 
     formData.append('fileItem', fileItem, fileItem.name);
@@ -32,7 +33,7 @@ export class FileUploadClientService {
   }
 
   optionalFileUpload(fileItem?: File, extraData?: object): any {
-    let apiCreateEndpoint = `${this.apiBaseURL}files/create/`
+    let apiCreateEndpoint = `${this.apiBaseURL}/files/create/`
     const formData: FormData = new FormData(); //?
     let fileName;
     if (extraData) {
@@ -57,7 +58,7 @@ export class FileUploadClientService {
     return this.http.request(req)
   }
   list(): Observable<any> {
-    const listEndpoint = `${this.apiBaseURL}files/`
+    const listEndpoint = `${this.apiBaseURL}/files/`
     return this.http.get(listEndpoint)
   }
 }
