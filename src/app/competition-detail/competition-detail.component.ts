@@ -4,6 +4,8 @@ import { Competition } from '../model/competition.model';
 import { CompetitionService } from '../service/competition.service';
 import { VideoService } from '../service/video.service';
 import { Video } from '../model/video.model';
+import { environment } from '../../environments/environment.prod';
+import { constants } from '../const/constants';
 
 @Component({
   selector: 'app-competition-detail',
@@ -13,6 +15,8 @@ import { Video } from '../model/video.model';
 export class CompetitionDetailComponent implements OnInit {
 
   competition: Competition;
+  urlVideos = environment.api + constants.PATH_VIDEOS;
+
 
   videos: Video[];
 

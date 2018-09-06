@@ -27,7 +27,7 @@
             <div class="container-video center">
               <vg-player>
                 <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
-                  <source src="http://localhost:8080/videos/videos/videos_converted/{{video.pathConvertido}}" type="video/mp4">
+                  <source src="{{urlVideos}}{{video.pathConvertido}}" type="video/mp4">
                 </video>
               </vg-player>
             </div>
