@@ -13,11 +13,11 @@
         </tr>
         <tr>
           <th>Inicio</th>
-          <td>{{ competition?.init  | date: 'dd/MM/yyyy'}}</td>
+          <td>{{ competition?.init | date: 'dd/MM/yyyy'}}</td>
         </tr>
         <tr>
           <th>Fin</th>
-          <td>{{ competition?.end  | date: 'dd/MM/yyyy'}}</td>
+          <td>{{ competition?.end | date: 'dd/MM/yyyy'}}</td>
         </tr>
         <tr>
           <th>Premio</th>
@@ -30,7 +30,7 @@
       <thead>
         <tr>
           <th>#</th>
-          <th colspan="2">Nombre del concursante</th>
+          <th>Nombre del concursante</th>
           <th>Email</th>
           <th>Fecha creacion</th>
           <th colspan="2">Descripcion</th>
@@ -45,7 +45,7 @@
         <tr *ngFor="let video of videos; let i = index">
           <th scope="row"> {{video.id_video}}
           </th>
-          <td colspan="2">
+          <td>
             {{video.name}} {{video.lastName}}
           </td>
           <td>
@@ -61,7 +61,13 @@
             {{ video.stateVideo }}
           </td>
           <td>
-            {{ video.stateVideo }}
+            <div class="container-video center">
+              <vg-player>
+                <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
+                  <source src="http://localhost:8080/videos/videos/videos_converted/{{video.pathConvertido}}" type="video/mp4">
+                </video>
+              </vg-player>
+            </div>
           </td>
         </tr>
       </tbody>
