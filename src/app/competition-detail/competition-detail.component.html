@@ -49,16 +49,10 @@
             {{video.description}}
           </td>
           <td>
-            <div class="container-video center">
-              <vg-player>
-                <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
-                  <source src="http://localhost:81/cfsm/VID-20180724-WA0023.mp4" type="video/mp4">
-                  </video>
-                </vg-player>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+            {{ video.stateVideo }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+</div>

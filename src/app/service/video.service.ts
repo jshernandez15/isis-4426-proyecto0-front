@@ -37,7 +37,7 @@ export class VideoService {
       video.name = element.name;
       video.path = element.path_real;
       video.pathConvertido = element.path_convertido;
-      video.stateVideo = element.stateVideo;
+      video.stateVideo = element.state_video;
       this.videos.push(video);
     });
     return this.videos;

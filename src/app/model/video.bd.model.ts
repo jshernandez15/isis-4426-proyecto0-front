@@ -9,7 +9,7 @@ export class VideoBd {
         public path_convertido: string = '',
         public description: string = '',
         public idConcurso: number,
-        public stateVideo: string,
+        public state_video: string,
     ) { }
 
     static empty() {

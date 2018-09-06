@@ -38,7 +38,7 @@ export class CompetitionDetailComponent implements OnInit {
   
   private loadVideos(competitionId: number): void {
     this.videoService.getVideos(competitionId)
-          .subscribe(videos => this.videos = videos);
+          .subscribe(videos => this.videos = this.videoService.convertObjectToDto(videos));
   }
 
   ngOnDestroy() {
