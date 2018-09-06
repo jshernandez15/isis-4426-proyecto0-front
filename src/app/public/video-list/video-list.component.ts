@@ -34,7 +34,7 @@ export class VideoListComponent implements OnInit {
   }
 
   private loadList(): void {
-    this.videoService.getVideos(this.idCompetition, 'COMPLETE').subscribe(data => {
+    this.videoService.getVideos(this.idCompetition, 'GENERADO').subscribe(data => {
       this.videos = this.videoService.convertObjectToDto(data);
     });
   }

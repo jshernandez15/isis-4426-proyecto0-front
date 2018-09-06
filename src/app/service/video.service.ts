@@ -9,7 +9,7 @@ import { VideoBd } from "../model/video.bd.model";
   providedIn: "root"
 })
 export class VideoService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   videos: Video[] = [];
 
   createVideo(video: Video): Observable<any> {
@@ -19,7 +19,7 @@ export class VideoService {
     );
   }
 
-  getVideos(id: number, state: string = "PENDIENTE"): Observable<any[]> {
+  getVideos(id: number, state: string = "EN PROCESO"): Observable<any[]> {
     return this.http.get<any>(
       environment.api + "/competition/" + id + "/videos/" + state
     );
