@@ -18,7 +18,7 @@ export class CompetitionDetailComponent implements OnInit {
 
   private sub: any;
 
-  constructor(private videoService: VideoService, private competitionService: CompetitionService, 
+  constructor(private videoService: VideoService, private competitionService: CompetitionService,
     private router: ActivatedRoute) { }
 
   ngOnInit() {
@@ -30,15 +30,15 @@ export class CompetitionDetailComponent implements OnInit {
 
   private loadCompetition(id: number): void {
     this.competitionService.getCompetitionById(id)
-          .subscribe(competition => {
-            this.competition = competition;
-            this.loadVideos(competition.id);
-          });
+      .subscribe(competition => {
+        this.competition = competition;
+        this.loadVideos(competition.id);
+      });
   }
-  
+
   private loadVideos(competitionId: number): void {
-    this.videoService.getVideos(competitionId)
-          .subscribe(videos => this.videos = this.videoService.convertObjectToDto(videos));
+    this.videoService.getVideosById(competitionId)
+      .subscribe(videos => this.videos = this.videoService.convertObjectToDto(videos));
   }
 
   ngOnDestroy() {
