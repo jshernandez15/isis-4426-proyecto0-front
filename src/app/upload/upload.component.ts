@@ -24,7 +24,7 @@ export class UploadComponent implements OnInit {
   @ViewChild(StatusCreateComponent)
   statusCreateComponent: StatusCreateComponent;
 
-  constructor(private videoService: VideoService) { }
+  constructor(private videoService: VideoService) {}
 
   @Output()
   videosEmitter = new EventEmitter<Video[]>();
@@ -84,9 +84,11 @@ export class UploadComponent implements OnInit {
     console.log(this.videoModel);
   }
   private loadList(): void {
-    this.videoService.getVideos(this.idCompetition).subscribe(data => {
-      this.videos = this.videoService.convertObjectToDto(data);
-      this.videosEmitter.emit(this.videos);
-    });
+    this.videoService
+      .getVideos(this.idCompetition, "GENERADO")
+      .subscribe(data => {
+        this.videos = this.videoService.convertObjectToDto(data);
+        this.videosEmitter.emit(this.videos);
+      });
   }
 }
