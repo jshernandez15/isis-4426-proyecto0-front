@@ -26,6 +26,7 @@ export class CompetitionComponent implements OnInit {
 
   modalities: string[] = ['Presencial', 'Virtual'];
 
+
   @ViewChild(StatusCreateComponent)
   statusCreateComponent: StatusCreateComponent;
 
@@ -92,6 +93,10 @@ export class CompetitionComponent implements OnInit {
     this.selectedRow = index;
     this.competitionModel = Competition.empty();
     this.competitionModel = Object.assign({}, this.competitions[this.selectedRow]);
+    const initDate = new Date(String(this.competitionModel.init));
+    const endDate = new Date(String(this.competitionModel.end));
+    this.competitionModel.init = { day: initDate.getDate(), month: initDate.getMonth(), year: initDate.getFullYear() }
+    this.competitionModel.end = { day: endDate.getDate(), month: endDate.getMonth(), year: endDate.getFullYear() }
     this.submitType = 'Actualizar';
     this.showNew = true;
   }
