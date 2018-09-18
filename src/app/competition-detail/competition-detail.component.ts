@@ -16,6 +16,7 @@ export class CompetitionDetailComponent implements OnInit {
 
   competition: Competition;
   urlVideos = constants.PATH_VIDEOS;
+  urlFotos = constants.PATH_FOTOS;
   urlReal = constants.PATH_REAL;
 
 

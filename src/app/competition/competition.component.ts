@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import swal from 'sweetalert'
 
 import { Competition } from '../model/competition.model'
 import { CompetitionService } from '../service/competition.service';
 import { Router } from '@angular/router';
+import { StatusCreateComponent } from '../status-create/status-create.component';
 
 @Component({
   selector: 'app-competition',
@@ -24,6 +25,9 @@ export class CompetitionComponent implements OnInit {
   selectedRow: number;
 
   modalities: string[] = ['Presencial', 'Virtual'];
+
+  @ViewChild(StatusCreateComponent)
+  statusCreateComponent: StatusCreateComponent;
 
   constructor(private competitionService: CompetitionService, private router: Router) {
   }
@@ -45,12 +49,25 @@ export class CompetitionComponent implements OnInit {
   }
 
   onSave() {
+    if (
+      this.statusCreateComponent &&
+      this.statusCreateComponent.serverResponse
+    ) {
+      this.competitionModel.banner = this.statusCreateComponent.serverResponse.path;
+    }
+
     if (this.competitionModel.end == null || this.competitionModel.init == null) {
       swal("Lo sentimos!", "Debes indicar un rango de fechas.", "error");
       return;
     }
 
+    if (this.competitionModel.banner == "") {
+      swal("Lo sentimos!", "Debes subir una imagen", "error");
+      return;
+    }
+
     if (this.submitType === 'Guardar') {
+
       this.competitionService.createCompetition(this.competitionModel).subscribe(
         response => this.competitions.push(response),
         err => {

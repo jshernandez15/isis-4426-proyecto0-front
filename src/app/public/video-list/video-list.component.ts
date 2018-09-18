@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { VideoService } from "../../service/video.service";
 import { Video } from "../../model/video.model";
 import { constants } from '../../const/constants';
+import { CompetitionService } from "../../service/competition.service";
+import { Competition } from "../../model/competition.model";
 
 @Component({
   selector: "app-video-list",
@@ -12,18 +14,20 @@ import { constants } from '../../const/constants';
 export class VideoListComponent implements OnInit {
   url: string;
   idCompetition: number;
-
   videos: any[] = [];
   showForm: boolean;
 
+  urlFotos;
   urlVideos = constants.PATH_VIDEOS;
+  competition: Competition
 
   private sub: any;
 
   constructor(
     private router: ActivatedRoute,
     private videoService: VideoService,
-    private route: Router
+    private route: Router,
+    private competitionService: CompetitionService
   ) { }
 
   ngOnInit() {
@@ -37,9 +41,15 @@ export class VideoListComponent implements OnInit {
   }
 
   private loadList(): void {
+
+    this.competitionService.getCompetitions()
+      .subscribe(competitions => {
+        this.urlFotos = constants.PATH_FOTOS;
+        this.competition = competitions.filter(competition => competition.id == this.idCompetition)[0];
+      }
+      );
     this.videoService.getVideos(this.idCompetition, 'Generado').subscribe(data => {
       this.videos = this.videoService.convertObjectToDto(data);
-      console.log(this.videos);
     });
   }
 
@@ -54,4 +64,5 @@ export class VideoListComponent implements OnInit {
   updateValue(videos: Video[]) {
     this.videos = videos;
   }
+
 }

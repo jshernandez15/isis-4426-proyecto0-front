@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, Input } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpEventType, HttpRequest, HttpErrorResponse, HttpEvent } from '@angular/common/http';
 
 import { FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
@@ -20,7 +20,9 @@ export class StatusCreateComponent implements OnInit, OnDestroy {
   uploadingProgressing: boolean = false;
   fileUploadSub: any;
   serverResponse: any;
-  allowedFormats = ['mp4', 'avi', 'flv', 'mov'];
+
+  @Input()
+  allowedFormats: String[];
 
   @ViewChild('myInput')
   myFileInput: any;
@@ -66,7 +68,7 @@ export class StatusCreateComponent implements OnInit, OnDestroy {
     }
 
     if (event.type === HttpEventType.Response) {
-      swal("Exito", "Video subido", "success");
+      swal("Exito", "Archivo subido", "success");
       this.uploadComplete = true
       this.serverResponse = event.body
     }
@@ -95,6 +97,7 @@ export class StatusCreateComponent implements OnInit, OnDestroy {
     let fileItem = files.item(0);
     let format = fileItem.name.split(".")[1].toLocaleLowerCase();
     console.log("file input has changed. The file is", fileItem)
+
     this.fileToUpload = fileItem;
 
     if (this.allowedFormats.filter(data => { return format === data }).length > 0) {
