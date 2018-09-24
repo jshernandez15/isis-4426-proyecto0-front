@@ -1,10 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { MatPaginator, MatTableDataSource } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
-import { VideoService } from "../../service/video.service";
-import { Video } from "../../model/video.model";
 import { constants } from '../../const/constants';
-import { CompetitionService } from "../../service/competition.service";
 import { Competition } from "../../model/competition.model";
+import { Video } from "../../model/video.model";
+import { CompetitionService } from "../../service/competition.service";
+import { VideoService } from "../../service/video.service";
 
 @Component({
   selector: "app-video-list",
@@ -23,12 +24,19 @@ export class VideoListComponent implements OnInit {
 
   private sub: any;
 
+  displayedColumns: string[] = ['id_video', 'name', 'description', 'pathConvertido'];
+
+  dataSource;
+
   constructor(
     private router: ActivatedRoute,
     private videoService: VideoService,
     private route: Router,
     private competitionService: CompetitionService
   ) { }
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
 
   ngOnInit() {
     this.showForm = false;
@@ -50,6 +58,8 @@ export class VideoListComponent implements OnInit {
       );
     this.videoService.getVideos(this.idCompetition, 'Generado').subscribe(data => {
       this.videos = this.videoService.convertObjectToDto(data);
+      this.dataSource = new MatTableDataSource<Video>(this.videos);
+      this.dataSource.paginator = this.paginator;
     });
   }
 
@@ -62,7 +72,7 @@ export class VideoListComponent implements OnInit {
   }
 
   updateValue(videos: Video[]) {
-    this.videos = videos;
+    this.loadList();
   }
 
 }

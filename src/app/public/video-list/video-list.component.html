@@ -4,29 +4,30 @@
   <img src="{{urlFotos}}{{competition.banner}}" style="width:60%; height: 15em; display: block; margin-left: auto; margin-right: auto;">
   <br>
   <div class="reglist">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th colspan="2">Autor</th>
-          <th colspan="2">Descripcion</th>
-          <th style="text-align: center;">Video</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngIf='videos.length == 0'>
-          <td colspan="8">No hay registros aún!</td>
-        </tr>
-        <tr *ngFor="let video of videos; let i = index">
-          <th scope="row"> {{video.id_video}}
-          </th>
-          <td colspan="2">
-            {{video.name}} {{video.lastName}}
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="id_video">
+          <th colspan="2" mat-header-cell *matHeaderCellDef> # </th>
+          <td mat-cell *matCellDef="let element"> {{element.id_video}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th colspan="2" mat-header-cell *matHeaderCellDef> Autor </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} {{element.lastName}}
           </td>
-          <td colspan="2">
-            {{video.description}}
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <th colspan="2" mat-header-cell *matHeaderCellDef> Descripcion </th>
+          <td mat-cell *matCellDef="let element; let i = index"> {{element.description}}
           </td>
-          <td>
+        </ng-container>
+
+        <ng-container matColumnDef="pathConvertido">
+          <th style="text-align: center;" mat-header-cell *matHeaderCellDef> Video </th>
+          <td mat-cell *matCellDef="let element; let i = index">
             <div class="container-video center">
               <vg-player>
                 <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
@@ -35,9 +36,15 @@
               </vg-player>
             </div>
           </td>
-        </tr>
-      </tbody>
-    </table>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+
     <div class="text-right">
       <button type="submit" class="btn btn-primary" (click)="onNew()">
         Nuevo
