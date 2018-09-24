@@ -1,39 +1,51 @@
+<!-- Copyright 2018 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->
+
 <h3>Listado de concursos</h3>
-<div class=”container”>
+<div class="container">
   <div class="reglist">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Nombre</th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngIf='competitions.length == 0'>
-          <td colspan="8">No hay registros aún!</td>
-        </tr>
-        <tr *ngFor="let competition of competitions; let i = index">
-          <th scope="row">{{ i + 1 }}</th>
-          <td>
-            <a target="_blank" href="{{ competition.address + '/' + competition.id | url }}">
-              {{ competition.name }}
-            </a>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef> Detalles </th>
+          <td mat-cell *matCellDef="let element; let i = index"> <button type="button" class="btn btn-warning" (click)="onView(i)">Ver
+              detalle</button>
           </td>
-          <td>
-            <button type="button" class="btn btn-warning" (click)="onView(i)">Ver detalle</button>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef> Editar </th>
+          <td mat-cell *matCellDef="let element; let i = index"> <button type="button" class="btn btn-info" (click)="onEdit(i)">Editar</button>
+
           </td>
-          <td>
-            <button type="button" class="btn btn-info" (click)="onEdit(i)">Editar</button>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="prize">
+          <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+          <td mat-cell *matCellDef="let element; let i = index"> <button type="button" class="btn btn-danger" (click)="onDelete(element.id)">Eliminar</button>
+
           </td>
-          <td>
-            <button type="button" class="btn btn-danger" (click)="onDelete(competition.id)">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+
     <div class="text-right">
       <button type="submit" class="btn btn-primary" (click)="onNew()">
         Nuevo
