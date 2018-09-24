@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Competition } from '../model/competition.model';
 import { CompetitionService } from '../service/competition.service';
@@ -6,6 +6,7 @@ import { VideoService } from '../service/video.service';
 import { Video } from '../model/video.model';
 import { environment } from '../../environments/environment.prod';
 import { constants } from '../const/constants';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
 
 @Component({
   selector: 'app-competition-detail',
@@ -15,6 +16,11 @@ import { constants } from '../const/constants';
 export class CompetitionDetailComponent implements OnInit {
 
   competition: Competition;
+
+  displayedColumns: string[] = ['id_video', 'name', 'email', 'created', 'description', 'stateVideo', 'pathConvertido', 'path'];
+
+  dataSource;
+
   urlVideos = constants.PATH_VIDEOS;
   urlFotos = constants.PATH_FOTOS;
   urlReal = constants.PATH_REAL;
@@ -26,6 +32,8 @@ export class CompetitionDetailComponent implements OnInit {
 
   constructor(private videoService: VideoService, private competitionService: CompetitionService,
     private router: ActivatedRoute) { }
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
     this.videos = [];
@@ -44,7 +52,11 @@ export class CompetitionDetailComponent implements OnInit {
 
   private loadVideos(competitionId: number): void {
     this.videoService.getVideosById(competitionId)
-      .subscribe(videos => this.videos = this.videoService.convertObjectToDto(videos));
+      .subscribe(videos => {
+        this.videos = this.videoService.convertObjectToDto(videos)
+        this.dataSource = new MatTableDataSource<Video>(this.videos);
+        this.dataSource.paginator = this.paginator;
+      });
   }
 
   ngOnDestroy() {
