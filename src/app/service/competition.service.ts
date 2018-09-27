@@ -37,7 +37,7 @@ export class CompetitionService {
     }
 
     getCompetitionsWithoutToken(): Observable<Competition[]> {
-        return this.http.get<any>(environment.api + '/competition', this.getOptionsWithoutToken());
+        return this.http.get<any>(environment.api + '/competitionWithoutToken', this.getOptionsWithoutToken());
     }
 
     getCompetitionById(competitionId): Observable<Competition> {
