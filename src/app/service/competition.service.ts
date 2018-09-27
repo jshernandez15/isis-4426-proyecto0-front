@@ -36,13 +36,15 @@ export class CompetitionService {
         return this.http.get<any>(environment.api + '/competition', this.getOptions());
     }
 
-    getCompetitionsWithoutToken(): Observable<Competition[]> {
-        return this.http.get<any>(environment.api + '/competitionWithoutToken');
-    }
-
     getCompetitionById(competitionId): Observable<Competition> {
         return this.http.get<any>(
             environment.api + '/competition/' + competitionId,
+            this.getOptions());
+    }
+
+    getCompetitionByIdWithoutToken(competitionId): Observable<Competition> {
+        return this.http.get<any>(
+            environment.api + '/competitionWithoutToken/' + competitionId,
             this.getOptions());
     }
 
