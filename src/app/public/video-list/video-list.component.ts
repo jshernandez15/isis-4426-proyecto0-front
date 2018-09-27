@@ -50,7 +50,7 @@ export class VideoListComponent implements OnInit {
 
   private loadList(): void {
 
-    this.competitionService.getCompetitions()
+    this.competitionService.getCompetitionsWithoutToken()
       .subscribe(competitions => {
         this.urlFotos = constants.PATH_FOTOS;
         this.competition = competitions.filter(competition => competition.id == this.idCompetition)[0];

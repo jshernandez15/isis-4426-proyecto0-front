@@ -23,9 +23,21 @@ export class CompetitionService {
             })
         };
     }
+
+    getOptionsWithoutToken(): { headers: HttpHeaders } {
+        return {
+            headers: new HttpHeaders({
+                'Accept': 'application/json'
+            })
+        };
+    }
     
     getCompetitions(): Observable<Competition[]> {
         return this.http.get<any>(environment.api + '/competition', this.getOptions());
+    }
+
+    getCompetitionsWithoutToken(): Observable<Competition[]> {
+        return this.http.get<any>(environment.api + '/competition', this.getOptionsWithoutToken());
     }
 
     getCompetitionById(competitionId): Observable<Competition> {
