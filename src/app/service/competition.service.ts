@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
@@ -13,7 +13,7 @@ import { Competition } from '../model/competition.model'
 })
 export class CompetitionService {
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { }
 
     getOptions(): { headers: HttpHeaders } {
         return {
@@ -31,7 +31,7 @@ export class CompetitionService {
             })
         };
     }
-    
+
     getCompetitions(): Observable<Competition[]> {
         return this.http.get<any>(environment.api + '/competition', this.getOptions());
     }
@@ -46,29 +46,35 @@ export class CompetitionService {
             this.getOptions());
     }
 
+    getCompetitionByIdWithoutToken(competitionId): Observable<Competition> {
+        return this.http.get<any>(
+            environment.api + '/competitionWithoutToken/' + competitionId,
+            this.getOptions());
+    }
+
     deleteCompetition(index: number): Observable<any> {
         return this.http.delete<any>(environment.api + '/competition/' + index, this.getOptions());
     }
 
     requestFromCompetition(competition: Competition) {
         return {
-            ...competition, 
-            init: competition.init.year + "-" + competition.init.month + "-" + competition.init.day, 
+            ...competition,
+            init: competition.init.year + "-" + competition.init.month + "-" + competition.init.day,
             end: competition.end.year + "-" + competition.end.month + "-" + competition.end.day
         };
     }
 
     createCompetition(competition: Competition): Observable<any> {
         return this.http.post<any>(
-            environment.api + '/competition/', 
-            this.requestFromCompetition(competition), 
+            environment.api + '/competition/',
+            this.requestFromCompetition(competition),
             this.getOptions());
     }
 
     editCompetition(competition: Competition): Observable<any> {
         return this.http.put<any>(
-            environment.api + '/competition/' + competition.id, 
-            this.requestFromCompetition(competition), 
+            environment.api + '/competition/' + competition.id,
+            this.requestFromCompetition(competition),
             this.getOptions());
     }
 
