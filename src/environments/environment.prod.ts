@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api: 'http://10.236.32.35:8080/api'
+  api: 'http://load-balancer-modelo-d-1396327652.us-west-2.elb.amazonaws.com'
 };

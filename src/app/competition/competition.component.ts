@@ -65,7 +65,7 @@ export class CompetitionComponent implements OnInit {
       this.statusCreateComponent &&
       this.statusCreateComponent.serverResponse
     ) {
-      this.competitionModel.banner = this.statusCreateComponent.serverResponse.path;
+      this.competitionModel.banner = this.statusCreateComponent.serverResponse.name;
     }
 
     if (
