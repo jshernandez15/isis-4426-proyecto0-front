@@ -20,7 +20,7 @@ export class UploadComponent implements OnInit {
   videoModel: Video;
   statusFormGroup: FormGroup;
   @Input()
-  idCompetition: number;
+  idCompetition: string;
   @ViewChild(StatusCreateComponent)
   statusCreateComponent: StatusCreateComponent;
 
@@ -40,7 +40,7 @@ export class UploadComponent implements OnInit {
       this.statusCreateComponent &&
       this.statusCreateComponent.serverResponse
     ) {
-      this.videoModel.path = this.statusCreateComponent.serverResponse.path;
+      this.videoModel.path = this.statusCreateComponent.serverResponse.name;
     }
 
     if (this.videoModel.name == "") {

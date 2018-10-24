@@ -8,13 +8,13 @@ export class Video {
         public description: string = '',
         public path: string,
         public pathConvertido: string,
-        public idConcurso: number,
+        public idConcurso: string,
         public stateVideo: string,
         public created: Date
     ) { }
 
     static empty() {
         let empty = ''
-        return new this(0, '', '', '', '', '', '', 0, '', null);
+        return new this(0, '', '', '', '', '', '', '', '', null);
     }
 }

@@ -14,7 +14,7 @@ import { VideoService } from "../../service/video.service";
 })
 export class VideoListComponent implements OnInit {
   url: string;
-  idCompetition: number;
+  idCompetition: string;
   videos: any[] = [];
   showForm: boolean;
 
@@ -42,7 +42,7 @@ export class VideoListComponent implements OnInit {
     this.showForm = false;
     this.sub = this.router.params.subscribe(params => {
       this.url = decodeURI(params["url"].replace(/-/g, " "));
-      this.idCompetition = Number(decodeURI(params["id"]));
+      this.idCompetition = decodeURI(params["id"]);
       //dispatch action to load the details here.
       this.loadList();
     });

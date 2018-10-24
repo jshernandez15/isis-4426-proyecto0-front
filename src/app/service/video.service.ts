@@ -19,7 +19,7 @@ export class VideoService {
     );
   }
 
-  getVideos(id: number, state: string = "En proceso"): Observable<any[]> {
+  getVideos(id: string, state: string = "En proceso"): Observable<any[]> {
     return this.http.get<any>(
       environment.api + "/competition/" + id + "/videos/" + state
     );

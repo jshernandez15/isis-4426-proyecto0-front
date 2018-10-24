@@ -7,13 +7,13 @@ export class VideoBd {
     public path_real: string = "",
     public path_convertido: string = "",
     public description: string = "",
-    public idConcurso: number,
+    public idConcurso: string,
     public state_video: string,
     public created: Date
   ) {}
 
   static empty() {
     let empty = "";
-    return new this(0, "", "", "", "", "", "", 0, "", null);
+    return new this(0, "", "", "", "", "", "", "", "", null);
   }
 }
