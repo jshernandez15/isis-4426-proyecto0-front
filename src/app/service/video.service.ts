@@ -34,17 +34,18 @@ export class VideoService {
   convertObjectToDto(data: VideoBd[]): Video[] {
     this.videos = [];
     data.forEach(element => {
+      var created = new Date(element.dateCreated);
       let video = Video.empty();
-      video.id_video = element.id_video;
+      video.id_video = element.id;
       video.description = element.description;
       video.email = element.email;
       video.idConcurso = element.idConcurso;
       video.lastName = element.last_name;
       video.name = element.name;
-      video.path = element.path_real;
-      video.pathConvertido = element.path_convertido;
+      video.path = element.path;
+      video.pathConvertido = element.pathConvertido;
       video.stateVideo = element.state_video;
-      video.created = element.created;
+      video.created = created;
       this.videos.push(video);
     });
     return this.videos;

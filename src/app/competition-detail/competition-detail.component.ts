@@ -17,7 +17,7 @@ export class CompetitionDetailComponent implements OnInit {
 
   competition: Competition;
 
-  displayedColumns: string[] = ['id_video', 'name', 'email', 'created', 'description', 'stateVideo', 'pathConvertido', 'path'];
+  displayedColumns: string[] = ['name', 'email', 'created', 'description', 'stateVideo', 'pathConvertido', 'path'];
 
   dataSource;
 
@@ -54,6 +54,7 @@ export class CompetitionDetailComponent implements OnInit {
     this.videoService.getVideosById(competitionId)
       .subscribe(videos => {
         this.videos = this.videoService.convertObjectToDto(videos)
+        console.log(this.videos);
         this.dataSource = new MatTableDataSource<Video>(this.videos);
         this.dataSource.paginator = this.paginator;
       });
