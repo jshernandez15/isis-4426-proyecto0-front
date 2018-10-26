@@ -42,8 +42,8 @@ export class VideoService {
       video.idConcurso = element.idConcurso;
       video.lastName = element.last_name;
       video.name = element.name;
-      video.path = element.path;
-      video.pathConvertido = element.pathConvertido;
+      video.path = element.path_real;
+      video.pathConvertido = element.path_convertido;
       video.stateVideo = element.state_video;
       video.created = created;
       this.videos.push(video);
