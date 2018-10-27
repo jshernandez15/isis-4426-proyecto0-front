@@ -6,7 +6,7 @@
   <div class="reglist">
 
     <div class="mat-elevation-z8">
-      <table mat-table [dataSource]="dataSource">
+      <table mat-table [dataSource]="dataSource" *ngIf="dataSource.length > 0">
 
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef> Autor </th>
@@ -36,6 +36,8 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
+
+      <div *ngIf="dataSource.length == 0">No hay registros que mostrar aún, sé el primero en subir un vídeo!</div>
 
       <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </div>
