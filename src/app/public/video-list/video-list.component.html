@@ -6,7 +6,7 @@
   <div class="reglist">
 
     <div class="mat-elevation-z8">
-      <mat-table [dataSource]="dataSource" *ngIf="dataSource.data.length > 0">
+      <table mat-table [dataSource]="dataSource" *ngIf="dataSource.data.length > 0">
 
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef> Autor </th>
@@ -35,7 +35,7 @@
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </mat-table>
+      </table>
 
       <div *ngIf="dataSource.data.length == 0">No hay registros que mostrar aún, sé el primero en subir un vídeo!</div>
 
