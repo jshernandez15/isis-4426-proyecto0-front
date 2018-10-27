@@ -24,19 +24,24 @@ export class VideoListComponent implements OnInit {
 
   private sub: any;
 
-  displayedColumns: string[] = ['id_video', 'name', 'description', 'pathConvertido'];
+  displayedColumns: string[] = ['name', 'description', 'pathConvertido'];
 
-  dataSource;
+  dataSource: MatTableDataSource<Video>;
 
   constructor(
     private router: ActivatedRoute,
     private videoService: VideoService,
     private route: Router,
     private competitionService: CompetitionService
-  ) { }
+  ) {
+    this.dataSource = new MatTableDataSource([]);
+  }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
 
   ngOnInit() {
     this.showForm = false;
@@ -57,9 +62,7 @@ export class VideoListComponent implements OnInit {
       }
       );
     this.videoService.getVideos(this.idCompetition, 'Generado').subscribe(data => {
-      this.videos = this.videoService.convertObjectToDto(data);
-      this.dataSource = new MatTableDataSource<Video>(this.videos);
-      this.dataSource.paginator = this.paginator;
+      this.dataSource.data = this.videoService.convertObjectToDto(data);
     });
   }
 
