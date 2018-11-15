@@ -34,7 +34,7 @@ export class CompetitionComponent implements OnInit {
   constructor(
     private competitionService: CompetitionService,
     private router: Router
-  ) {}
+  ) { }
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
@@ -89,7 +89,11 @@ export class CompetitionComponent implements OnInit {
           err => {
             console.log(err.error.message === "Error existing address");
             if (err) {
-              swal("Lo sentimos!", "La URL ya existe", "error");
+              if (err.status == 201) {
+                this.loadList();
+              } else {
+                swal("Lo sentimos!", "La URL ya existe", "error");
+              }
             } else {
               swal(
                 "Lo sentimos!",
